@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.aspect.annotation.AutoLog;
 import org.jeecg.common.system.query.QueryGenerator;
@@ -76,7 +75,6 @@ public class VbdMonitorDataController {
      */
     @AutoLog(value = "病媒监测药效试验-添加")
     @Operation(summary="添加")
-//    @RequiresPermissions("bmjc:vbd_monitor_data:add")
     @PostMapping(value = "/add")
     public Result<String> add(@RequestBody VbdMonitorDataPage vbdMonitorDataPage) {
         VbdMonitorData vbdMonitorData = new VbdMonitorData();
@@ -90,7 +88,6 @@ public class VbdMonitorDataController {
      */
     @AutoLog(value = "病媒监测药效试验-编辑")
     @Operation(summary="编辑")
-//    @RequiresPermissions("bmjc:vbd_monitor_data:edit")
     @RequestMapping(value = "/edit", method = {RequestMethod.PUT,RequestMethod.POST})
     public Result<String> edit(@RequestBody VbdMonitorDataPage vbdMonitorDataPage) {
         VbdMonitorData vbdMonitorData = new VbdMonitorData();
@@ -108,7 +105,6 @@ public class VbdMonitorDataController {
      */
     @AutoLog(value = "病媒监测药效试验-通过id删除")
     @Operation(summary="通过id删除")
-//    @RequiresPermissions("bmjc:vbd_monitor_data:delete")
     @DeleteMapping(value = "/delete")
     public Result<String> delete(@RequestParam(name="id",required=true) String id) {
         vbdMonitorDataService.delMain(id);
@@ -120,7 +116,6 @@ public class VbdMonitorDataController {
      */
     @AutoLog(value = "病媒监测药效试验-批量删除")
     @Operation(summary="批量删除")
-//    @RequiresPermissions("bmjc:vbd_monitor_data:deleteBatch")
     @DeleteMapping(value = "/deleteBatch")
     public Result<String> deleteBatch(@RequestParam(name="ids",required=true) String ids) {
         this.vbdMonitorDataService.delBatchMain(Arrays.asList(ids.split(",")));
@@ -140,7 +135,6 @@ public class VbdMonitorDataController {
     /**
      * 导出excel
      */
-//    @RequiresPermissions("bmjc:vbd_monitor_data:exportXls")
     @RequestMapping(value = "/exportXls")
     public ModelAndView exportXls(HttpServletRequest request, VbdMonitorData vbdMonitorData) {
         // Step.1 组装查询条件查询数据
@@ -178,7 +172,6 @@ public class VbdMonitorDataController {
     /**
      * 通过excel导入数据
      */
-//    @RequiresPermissions("bmjc:vbd_monitor_data:importExcel")
     @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
